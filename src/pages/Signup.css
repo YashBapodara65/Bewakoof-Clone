@@ -1,0 +1,8 @@
+.gender-group button {
+    border: 1px solid #ccc;
+}
+.gender-group button.active {
+    background-color: #fff7e6;
+    border-color: #f0ad4e;
+    color: #000;
+}
