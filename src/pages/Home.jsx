@@ -3,6 +3,8 @@ import NavbarCom from "../components/NavbarCom";
 import sty from "./Home.module.css";
 import SwiperSlideCom from "../components/SwiperSlideCom";
 import {v4} from "uuid";
+import SlickSliderCom from "../components/SlickSliderCom";
+import FooterCom from "../components/FooterCom";
 
 function Home() {
 
@@ -226,6 +228,99 @@ function Home() {
     }
   ]
 
+  const new_arrival1 = [
+    {
+      id : v4(),
+      img : "../../public/arrival1.jpg",
+      title : "Men's Blue Oversized Sweater",
+      brand : "Bewakoof®",
+      price : 3099,
+      offer : 74,
+      rating : 4.5
+    },
+    {
+      id : v4(),
+      img : "../../public/arrival2.jpg",
+      title : "Men's Blue & Grey Athletic Color Block Oversized Varsity Shorts",
+      brand : "Bewakoof®",
+      price : 1799,
+      offer : 61,
+      rating : 4.4
+    },
+    {
+      id : v4(),
+      img : "../../public/arrival3.jpg",
+      title : "Men's Jet Black Itachi Graphic Printed Oversized Windcheater Jacket",
+      brand : "Bewakoof Air® 1.0",
+      price : 4099,
+      offer : 70,
+      rating : 4.5
+    },
+    {
+      id : v4(),
+      img : "../../public/arrival4.jpg",
+      title : "Women's Green Super Loose Fit Cargo Joggers",
+      brand : "Bewakoof Heavy Duty® 1.0",
+      price : 3399,
+      offer : 61,
+      rating : 4.5
+    },
+    {
+      id : v4(),
+      img : "../../public/arrival5.jpg",
+      title : "Women's Black Squid game Graphic Printed Oversized T-shirt",
+      brand : "Bewakoof®",
+      price : 1499,
+      offer : 53,
+      rating : 4.4
+    },
+    {
+      id : v4(),
+      img : "../../public/arrival6.jpg",
+      title : "Men's Chocolate Brown Textured Oversized Parachute Pants",
+      brand : "Bewakoof Heavy Duty® 1.0",
+      price : 2699,
+      offer : 55,
+      rating : 4.4
+    },
+    {
+      id : v4(),
+      img : "../../public/arrival7.jpg",
+      title : "Women's Green Super Loose Fit Cargo Joggers",
+      brand : "Bewakoof Heavy Duty® 1.0",
+      price : 1299,
+      offer : 61,
+      rating : 4.4
+    },
+    {
+      id : v4(),
+      img : "../../public/arrival8.jpg",
+      title : "Men's Purple Oversized Cargo Joggers",
+      brand : "Bewakoof Heavy Duty® 1.0",
+      price : 2699,
+      offer : 55,
+      rating : 4.5
+    },
+    {
+      id : v4(),
+      img : "../../public/arrival9.jpg",
+      title : "Men's Green & Black Athletic Color Block Oversized Varsity Shorts",
+      brand : "Bewakoof®",
+      price : 1799,
+      offer : 61,
+      rating : 4.5
+    },
+    {
+      id : v4(),
+      img : "../../public/arrival10.jpg",
+      title : "Men's Green Oversized Hoodies",
+      brand : "Bewakoof®",
+      price : 2099,
+      offer : 66,
+      rating : 4.5
+    }
+  ]
+
   return (
     <>
       <section className="bg-gray-200 flex justify-between px-6 py-1">
@@ -238,7 +333,7 @@ function Home() {
         <div className="flex gap-6">
           <p>Contact Us</p>
           <p>Track Order</p>
-        </div>
+        </div>  
       </section>
       
       <NavbarCom />
@@ -296,6 +391,20 @@ function Home() {
         }
         </div>
       </section>
+
+      <section className="mt-15">
+        <h1 className="text-3xl text-center">New Arrivals</h1>
+        <div className="w-[100%] flex justify-center items-center">
+          <div className="w-[95%]">
+          <SlickSliderCom images={new_arrival1} dotsVal={false} />
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <FooterCom/>
+      </section>
+
     </>
   );
 }
