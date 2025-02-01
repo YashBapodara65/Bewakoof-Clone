@@ -18,7 +18,8 @@ function SwiperSlideCom({images,view}) {
     slidesPerView={view}
     loop={false}
     // navigation
-    pagination={{ clickable: true }}
+    // pagination={{ clickable: true }}
+    pagination={{ dynamicBullets: true, clickable: true }}
   >
     {/* Swiper slides */}
     {
