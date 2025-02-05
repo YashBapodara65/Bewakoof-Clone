@@ -10,8 +10,6 @@ import * as LogicsVariable from "../components/LogicsCom";
 
 function Home() {
 
-  
-
   return (
     <>
       <section className="bg-gray-200 flex justify-between px-6 py-1">
@@ -103,7 +101,7 @@ function Home() {
       </section>
 
       <section className="mt-20">
-        <FooterCom/>
+        <FooterCom visibleExtra={true} />
       </section>
 
     </>

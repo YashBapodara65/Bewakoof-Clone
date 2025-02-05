@@ -3,13 +3,19 @@ import NavbarCom from "../components/NavbarCom";
 import SignupPhoto from "../../public/sigup.jpg";
 import Swal from "sweetalert2";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Signup() {
+
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     fullname: "",
     email: "",
     gender: "", 
   });
+
+  let [getmobno, setGetMobno] = useState(localStorage.getItem("mobno"));
 
   const [validForm, setValidForm] = useState({
     fullname: true,
@@ -47,12 +53,8 @@ function Signup() {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    setFormData({ ...formData, [name]: value });
+    setFormData({ ...formData, [name]: value || "" });
 
-    // if(name == "gender")
-    // {
-    //   setFormData({ ...validForm, [name]: value !== "" });
-    // }
   };
 
   const dataRef = useRef({});
@@ -111,7 +113,7 @@ function Signup() {
         // console.log("success");
         if (checkOtp === otp) {
 
-          axios.post(`http://localhost:3000/users`,formData)
+          axios.post(`http://localhost:3000/users`,{...formData,getmobno})
           .then((res)=>{
             console.log(res);
           })
@@ -124,12 +126,25 @@ function Signup() {
             icon: "success",
             confirmButtonText: "OK",
           });
+          
           setInputObj({
             input1: "",
             input2: "",
             input3: "",
             input4: "",
           }); 
+          
+          setFormData({
+            fullname: "",
+            email: "",
+            gender: "",
+          })
+
+          setGetMobno("");
+
+          // sessionStorage.removeItem("mobno");
+          navigate("/");
+
         } else {
           Swal.fire({
             title: "Please enter the valid OTP",
@@ -142,7 +157,7 @@ function Signup() {
             input3: "",
             input4: "",
           });
-        }    
+        }     
     }
 
   };
@@ -224,6 +239,7 @@ function Signup() {
                 onBlur={handleBlur}
                 onFocus={handleFocus}
                 onChange={handleChange}
+                value={formData.fullname}
                 className="border-2 w-full md:w-[80%] border-gray-300 outline-none text-lg px-4 rounded-lg h-12"
                 placeholder="Ex - Jhon Sharma"
               />
@@ -238,6 +254,7 @@ function Signup() {
               <input
                 type="text"
                 disabled={true}
+                value={getmobno}
                 name="mobno"
                 className="border-2 w-full md:w-[80%] border-gray-300 outline-none text-lg px-4 rounded-lg h-12"
                 placeholder=""
@@ -251,6 +268,7 @@ function Signup() {
                 type="text"
                 name="email"
                 onBlur={handleBlur}
+                value={formData.email}
                 onFocus={handleFocus}
                 onChange={handleChange}
                 className="border-2 w-full md:w-[80%] border-gray-300 outline-none text-lg px-4 rounded-lg h-12"

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Logo from "../../public/logo.svg";
 import sty from "./NavbarCom.module.css";
 import SearchIcon from "@mui/icons-material/Search";
@@ -35,8 +35,17 @@ import Special27 from "../../public/special27.png";
 import Special28 from "../../public/special28.png";
 import Special29 from "../../public/special29.png";
 import Special30 from "../../public/special30.png";
+import axios from "axios";
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
 function NavbarCom() {
+
+  const getmobno = localStorage.getItem("mobno");
+
+  // axios.get(`http://localhost:3000/users`)
+
+  // console.log(getmobno);
+
   return (
     <>
       <hr />
@@ -307,9 +316,27 @@ function NavbarCom() {
             <SearchIcon className="absolute top-1/4 start-[3%]" />
           </div>
           <p>|</p>
-          <Link to={"/login"}>
+          {
+            getmobno == null 
+            ?
+            <Link to={"/login"}>
             <p>LOGIN</p>
           </Link>
+            : 
+            <div className="relative group">
+              <PersonOutlineOutlinedIcon className="mt-1 cursor-pointer" />
+              <div className="absolute hidden group-hover:block -end-[100%] z-100 w-50">
+              <div className="bg-white w-full py-2 flex flex-col gap-3">
+                <p className="italic px-4 py-2 hover:bg-gray-200 cursor-pointer">Hi, yash</p>
+                <p className="italic px-4 py-2 hover:bg-gray-200 cursor-pointer">My Account</p>
+                <p className="italic px-4 py-2 hover:bg-gray-200 cursor-pointer">My Wishlist</p>
+                <p className="italic px-4 py-2 hover:bg-gray-200 cursor-pointer">My Orders</p>
+                <p className="italic px-4 py-2 hover:bg-gray-200 cursor-pointer">My Wallet</p>
+                <p className="italic px-4 py-2 hover:bg-gray-200 cursor-pointer">Logout</p>
+              </div>
+              </div>
+            </div>
+          }
           <p>
             <FavoriteBorderRoundedIcon />
           </p>

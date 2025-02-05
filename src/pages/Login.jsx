@@ -63,6 +63,9 @@ function Login() {
         input3 : "",
         input4 : ""
       })
+
+      
+
       navigate("/");
     }
     else
@@ -150,16 +153,25 @@ function Login() {
     if (isNaN(mobno)) {
       setValidMob(false);
     } else if (mobno.length == 10) {
-
+      
+      localStorage.setItem("mobno",mobno);
       axios.get(`http://localhost:3000/users?mobno=${mobno}`)
       .then((res)=>{
-        if(res.length > 0)
+        if(res.data.length > 0)
         {
           setValidMob(true);
           showAlert();
           setStatus(true);
+          // console.log("found");
         }
-        console.log(res);
+        else
+        {
+          // sessionStorage.setItem("mobno",mobno);
+          showAlert();
+          navigate("/signup");
+          // console.log("not found");
+        }
+        // console.log(res);
       })
       .catch((err)=>{
         console.log(err);
